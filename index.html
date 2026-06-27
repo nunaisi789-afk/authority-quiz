@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Is Your Story Ready to Become a Book? | The Authority Book Framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,500&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+<style>
+  /* --- Brand palette: exact hex from the Company Assets Board (canonical) --- */
+  :root {
+    --ink: #0E0E15;        /* Charcoal */
+    --soft-ink: #56525e;   /* muted charcoal for body */
+    --cream: #faf6ee;      /* Cream */
+    --cream-2: #f1e7d6;    /* deeper cream */
+    --gold: #d4af37;       /* Gold */
+    --gold-deep: #b08d22;  /* darker gold for gradients/hover */
+    --ember: #C65A2E;      /* Ember */
+    --pink: #ff6b9d;       /* Pink */
+    --line: #e9ddc8;
+    --white: #fffdf9;
+    --shadow: 0 18px 50px rgba(14, 14, 21, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: var(--cream); }
+
+  body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #fbf6ed 0%, transparent 60%),
+      linear-gradient(160deg, var(--cream) 0%, var(--cream-2) 100%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px 18px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 640px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 44px 42px 38px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--gold), var(--ember), var(--pink));
+  }
+
+  .brand-logo {
+    display: block;
+    height: 46px;
+    width: auto;
+    margin: 0 0 22px;
+    object-fit: contain;
+  }
+
+  .eyebrow {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--gold-deep);
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 34px;
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+  h1 em { font-style: italic; color: var(--gold-deep); }
+
+  .lede {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--soft-ink);
+    margin: 0 0 26px;
+  }
+
+  .meta {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--soft-ink);
+    margin-bottom: 30px;
+  }
+  .meta span { display: inline-flex; align-items: center; gap: 7px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .btn {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    font-size: 15px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+    border: none;
+    border-radius: 999px;
+    padding: 16px 34px;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 10px 24px rgba(168, 127, 51, 0.32);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(168, 127, 51, 0.4); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn.ghost {
+    background: transparent;
+    color: var(--gold-deep);
+    box-shadow: none;
+    border: 1.5px solid var(--line);
+    padding: 13px 26px;
+  }
+  .btn.ghost:hover { box-shadow: none; border-color: var(--gold); }
+
+  /* progress */
+  .progress-wrap { margin-bottom: 30px; }
+  .progress-top {
+    display: flex; justify-content: space-between;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--soft-ink); margin-bottom: 9px;
+  }
+  .progress-bar { height: 6px; background: var(--cream-2); border-radius: 99px; overflow: hidden; }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold), var(--ember));
+    border-radius: 99px; transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .stage-tag {
+    font-family: 'Lato', sans-serif; font-weight: 900;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: 10.5px; color: var(--ember); margin-bottom: 12px;
+  }
+  .question {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 25px; line-height: 1.3;
+    margin: 0 0 26px;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 12px; }
+  .option {
+    text-align: left;
+    font-family: 'Lato', sans-serif; font-size: 15.5px; line-height: 1.45;
+    color: var(--ink);
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.14s ease;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .option:hover { border-color: var(--gold); background: #fffaf0; transform: translateX(2px); }
+  .option .pip {
+    flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--line); transition: all 0.14s ease;
+  }
+  .option.sel { border-color: var(--gold-deep); background: #fbf3e2; }
+  .option.sel .pip { border-color: var(--gold-deep); background: var(--gold-deep); box-shadow: inset 0 0 0 3px #fbf3e2; }
+
+  .nav { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
+  .nav .back {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Lato', sans-serif; font-weight: 700; font-size: 14px;
+    color: var(--soft-ink); padding: 8px 4px;
+  }
+  .nav .back:hover { color: var(--ink); }
+  .nav .back[hidden] { visibility: hidden; }
+
+  /* email gate */
+  .field { margin: 22px 0 8px; }
+  .field input {
+    width: 100%; font-family: 'Lato', sans-serif; font-size: 16px;
+    padding: 15px 18px; border: 1.5px solid var(--line); border-radius: 14px;
+    background: var(--white); color: var(--ink);
+  }
+  .field input:focus { outline: none; border-color: var(--gold); }
+  .fineprint { font-size: 12.5px; color: var(--soft-ink); margin-top: 14px; line-height: 1.5; }
+
+  /* result */
+  .score-ring {
+    width: 132px; height: 132px; margin: 4px auto 20px; position: relative;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring .num {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  .score-ring .num b { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 800; line-height: 1; }
+  .score-ring .num small { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--soft-ink); margin-top: 3px; }
+
+  .tier-name {
+    font-family: 'Playfair Display', serif; font-weight: 800; font-size: 30px;
+    text-align: center; margin: 0 0 6px;
+  }
+  .tier-sub { text-align: center; color: var(--soft-ink); font-size: 16px; line-height: 1.55; margin: 0 auto 26px; max-width: 460px; }
+
+  .diag {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+  }
+  .diag .box { border: 1.5px solid var(--line); border-radius: 14px; padding: 16px; }
+  .diag .box.edge { border-color: #f0c3ac; background: #fdf1ea; }
+  .diag .box.strength { border-color: #ecd99c; background: #fbf3da; }
+  .diag .box h4 {
+    font-family: 'Lato', sans-serif; font-weight: 900; letter-spacing: 0.12em;
+    text-transform: uppercase; font-size: 10.5px; margin: 0 0 7px; color: var(--soft-ink);
+  }
+  .diag .box p { margin: 0; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 17px; }
+
+  .next {
+    background: linear-gradient(160deg, #fbf3e2, #f7ead2);
+    border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 24px; margin-bottom: 22px;
+  }
+  .next h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin: 0 0 8px; }
+  .next p { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: var(--soft-ink); }
+
+  .center { text-align: center; }
+  .retake { display: block; margin: 18px auto 0; background: none; border: none; cursor: pointer; color: var(--soft-ink); font-family: 'Lato'; font-weight: 700; font-size: 13px; text-decoration: underline; }
+
+  .dev-note {
+    margin-top: 26px; padding-top: 16px; border-top: 1px dashed var(--line);
+    font-size: 11.5px; color: #a99b86; line-height: 1.5;
+  }
+
+  .screen { animation: fade 0.35s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 560px) {
+    .card { padding: 32px 24px 28px; border-radius: 18px; }
+    h1 { font-size: 27px; }
+    .question { font-size: 21px; }
+    .diag { grid-template-columns: 1fr; }
+  }
+  /* hide developer notes in the live version */
+  .dev-note { display: none !important; }
+</style>
+</head>
+<body>
+  <main class="card" id="app"></main>
+
+<script>
+/* ---------------------------------------------------------------
+   THE AUTHORITY BOOK FRAMEWORK
+   "Is Your Story Ready to Become a Book?" readiness assessment
+   Each question maps to one RISE stage and carries 0-3 readiness points.
+   ---------------------------------------------------------------- */
+
+const STAGES = {
+  release:   { label: "Release the Mess",      edge: "You are still carrying the weight of the story. Before it can teach, it has to be set down. Your first move is to release what is still raw so the lesson, not the wound, leads." , strength: "You have done the inner work. Your story no longer runs you, which means you can hold it for others." },
+  integrate: { label: "Integrate the Medicine", edge: "You have lived the lesson but not yet named it. Your book becomes possible the moment your experience turns into a teachable method others can follow." , strength: "You know the medicine your story carries and you can teach it. That is the spine of a real book." },
+  share:     { label: "Share the Message",      edge: "Your message is still speaking to everyone, which means it lands on no one. Naming the one reader and the one sentence is what turns a story into a book." , strength: "You are clear on who this is for and what you are here to say. That clarity is what makes a book sell." },
+  elevate:   { label: "Elevate the Mission",    edge: "The material is there, but you are still standing behind it. Stepping into authorship is an identity move as much as a writing one." , strength: "You are ready to be seen as the author and authority of this work. That readiness is rare and it changes everything." },
+};
+
+const QUESTIONS = [
+  { stage: "release", q: "When you revisit the hardest part of your story, what is true right now?",
+    opts: [
+      ["It still hurts too much to go there", 0],
+      ["I can touch it, but it stirs a lot up", 1],
+      ["I have mostly made peace with it", 2],
+      ["It has become a source of strength I draw on", 3],
+    ]},
+  { stage: "release", q: "Could you tell your story publicly without needing it to land a certain way?",
+    opts: [
+      ["No, I would be afraid of being judged", 0],
+      ["I would be nervous and need reassurance", 1],
+      ["Mostly, in the right setting", 2],
+      ["Yes, I am free of needing approval", 3],
+    ]},
+  { stage: "integrate", q: "Do you know the specific transformation your story teaches others?",
+    opts: [
+      ["Not really, it is still a feeling", 0],
+      ["I have a vague sense of it", 1],
+      ["Yes, I can name it clearly", 2],
+      ["Yes, and I can teach it as a method", 3],
+    ]},
+  { stage: "integrate", q: "If someone asked, what does your journey make possible for me, you could answer...",
+    opts: [
+      ["I would struggle to answer", 0],
+      ["In general terms", 1],
+      ["Clearly, in a sentence", 2],
+      ["Clearly, with a framework", 3],
+    ]},
+  { stage: "share", q: "How clear are you on exactly who your book is for?",
+    opts: [
+      ["Not clear, it is for anyone really", 0],
+      ["A broad group of people", 1],
+      ["A specific kind of person", 2],
+      ["A specific person I could name", 3],
+    ]},
+  { stage: "share", q: "Your core message, in one sentence, is...",
+    opts: [
+      ["I do not have one yet", 0],
+      ["I have a few competing ones", 1],
+      ["I have one, still rough", 2],
+      ["I have one, sharp and repeatable", 3],
+    ]},
+  { stage: "elevate", q: "How ready are you to be visible as the author of this story?",
+    opts: [
+      ["I would rather stay behind the scenes", 0],
+      ["Willing, but uncomfortable", 1],
+      ["Ready, with some nerves", 2],
+      ["Fully ready to lead with it", 3],
+    ]},
+  { stage: "elevate", q: "What is your relationship with calling yourself an author and authority?",
+    opts: [
+      ["It feels like it is not for me", 0],
+      ["Aspirational, not yet true", 1],
+      ["I am growing into it", 2],
+      ["It is simply who I am", 3],
+    ]},
+];
+
+const MAX = QUESTIONS.length * 3; // 24
+
+const TIERS = [
+  { min: 0,  tag: "authority-quiz:seed",             name: "The Seed",            blurb: "Your story is alive, but it is not ready to be a book yet, and that is exactly the right place to start. The raw material is here. It needs tending before it is told." },
+  { min: 10, tag: "authority-quiz:spark",            name: "The Spark",           blurb: "The fire is lit. You have the experience and the beginnings of a message. What you need now is shape: turning lived wisdom into a structure readers can follow." },
+  { min: 16, tag: "authority-quiz:draft-in-waiting", name: "The Draft in Waiting",blurb: "You are closer than you think. Your story is processed, your lesson is clear, and the book is almost asking to be written. The missing piece is a container that holds you to finishing it." },
+  { min: 21, tag: "authority-quiz:ready-to-author",  name: "Ready to Author",     blurb: "It is time. Your story is integrated, your message is sharp, and you are ready to be seen. The only thing standing between you and a published book is the decision to begin." },
+];
+
+// Entry mode: public lead magnet (email required) vs known database contact (email skipped).
+// A database broadcast link carries a contact token, e.g. ...?contact={{contact.id}}
+const params = new URLSearchParams(location.search);
+const KNOWN = params.has("contact") || params.has("c") || params.get("known") === "1";
+const state = {
+  i: 0,
+  answers: Array(QUESTIONS.length).fill(null),
+  email: params.get("email") || "",
+  contact: params.get("contact") || params.get("c") || "",
+};
+const app = document.getElementById("app");
+
+// Auto-fit the embedding iframe to the content height so there is never dead space.
+// The srcdoc iframe is same-origin, so the inner script can size its own frame element.
+function fitFrame() {
+  const h = document.body.scrollHeight;
+  try { if (window.frameElement) window.frameElement.style.height = h + "px"; } catch (e) {}     // same-origin
+  if (window.parent !== window) { try { window.parent.postMessage({ aqHeight: h }, "*"); } catch (e) {} } // hosted/cross-origin
+}
+if ("ResizeObserver" in window) {
+  new ResizeObserver(fitFrame).observe(document.body);
+  window.addEventListener("load", fitFrame);
+}
+
+// --- Mastermind capture: native embedded form (free, no per-lead fee, no credentials in the browser).
+//     The GHL form captures the lead; the app reveals the branded result the moment it is submitted. ---
+const FORM_ID = "NCKnqHSjEVhpgJHzHN5a";
+const FORM_SRC = "https://thehub-api.mastermind.com/widget/form/" + FORM_ID;
+let revealed = false;
+
+function loadFormEmbed() {
+  const old = document.getElementById("ghl-form-embed");
+  if (old) old.remove();
+  const s = document.createElement("script");
+  s.id = "ghl-form-embed";
+  s.src = "https://thehub-api.mastermind.com/js/form_embed.js";
+  document.body.appendChild(s);
+}
+
+// The embedded form posts a message to this page when it is submitted. Reveal the result then.
+window.addEventListener("message", (e) => {
+  const d = e.data;
+  let isSubmit = false;
+  if (typeof d === "string") isSubmit = /submit/i.test(d);
+  else if (d && typeof d === "object") {
+    const t = String(d.type || d.event || d.action || "");
+    isSubmit = /submit/i.test(t) || d.formSubmitted === true;
+  }
+  if (isSubmit && !revealed && document.getElementById("inline-" + FORM_ID)) {
+    revealed = true;
+    renderResult();
+  }
+});
+
+function tierFor(score) {
+  let t = TIERS[0];
+  for (const tier of TIERS) if (score >= tier.min) t = tier;
+  return t;
+}
+
+function stageScores() {
+  const totals = {}, counts = {};
+  QUESTIONS.forEach((q, idx) => {
+    const v = state.answers[idx] ?? 0;
+    totals[q.stage] = (totals[q.stage] || 0) + v;
+    counts[q.stage] = (counts[q.stage] || 0) + 1;
+  });
+  const avg = {};
+  for (const s in totals) avg[s] = totals[s] / counts[s];
+  return avg;
+}
+
+/* ---------- screens ---------- */
+
+function renderIntro() {
+  app.innerHTML = `
+    <div class="screen">
+      <img class="brand-logo" src="https://assets.cdn.filesafe.space/9GsaTP92TzGKJjfPisnu/media/69159a12948ba5a783597617.png" alt="Nunaisi Ma" />
+      <div class="eyebrow">The Authority Book Framework</div>
+      <h1>Is your story ready to become a <em>book?</em></h1>
+      <p class="lede">You have lived something worth writing. This 2-minute assessment shows you exactly where your story sits on the path from lived experience to published authority, and the one move that takes you to the next stage.</p>
+      <div class="meta">
+        <span><span class="dot"></span> 8 questions</span>
+        <span><span class="dot"></span> About 2 minutes</span>
+        <span><span class="dot"></span> Personalized result</span>
+      </div>
+      <button class="btn" id="start">Begin the assessment</button>
+      <div class="dev-note">Prototype built for Nunaisi. Brand palette and logo are from the Company Assets Board. Public visitors must enter an email to see results; database visitors arriving on a personalized link skip that step. Email capture and result tagging are not yet wired to Mastermind.</div>
+    </div>`;
+  document.getElementById("start").onclick = () => { state.i = 0; renderQuestion(); };
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.i];
+  const stage = STAGES[q.stage];
+  const pct = Math.round((state.i / QUESTIONS.length) * 100);
+  app.innerHTML = `
+    <div class="screen">
+      <div class="progress-wrap">
+        <div class="progress-top"><span>Question ${state.i + 1} of ${QUESTIONS.length}</span><span>${stage.label}</span></div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      </div>
+      <div class="stage-tag">${stage.label}</div>
+      <h2 class="question">${q.q}</h2>
+      <div class="options" id="opts">
+        ${q.opts.map((o, k) => `
+          <button class="option ${state.answers[state.i] === o[1] ? 'sel' : ''}" data-val="${o[1]}">
+            <span class="pip"></span><span>${o[0]}</span>
+          </button>`).join("")}
+      </div>
+      <div class="nav">
+        <button class="back" id="back" ${state.i === 0 ? 'hidden' : ''}>&larr; Back</button>
+        <button class="btn" id="next" ${state.answers[state.i] === null ? 'disabled' : ''}>${state.i === QUESTIONS.length - 1 ? 'See my result' : 'Next'}</button>
+      </div>
+    </div>`;
+
+  document.querySelectorAll(".option").forEach(el => {
+    el.onclick = () => {
+      state.answers[state.i] = Number(el.dataset.val);
+      document.querySelectorAll(".option").forEach(o => o.classList.remove("sel"));
+      el.classList.add("sel");
+      document.getElementById("next").disabled = false;
+    };
+  });
+  document.getElementById("back").onclick = () => { if (state.i > 0) { state.i--; renderQuestion(); } };
+  document.getElementById("next").onclick = () => {
+    if (state.answers[state.i] === null) return;
+    if (state.i < QUESTIONS.length - 1) { state.i++; renderQuestion(); }
+    else if (KNOWN) renderResult();  // already on the database, no email needed
+    else renderGate();
+  };
+}
+
+function renderGate() {
+  // Persist answers so the result can be rebuilt even if the form sends us on a round trip.
+  try { sessionStorage.setItem("aq_answers", JSON.stringify(state.answers)); } catch (e) {}
+  app.innerHTML = `
+    <div class="screen">
+      <div class="eyebrow">Almost there</div>
+      <h1 style="font-size:28px;">Where should I send your reading?</h1>
+      <p class="lede">Add your name and email below. Your personalised result opens here the moment you submit.</p>
+      <div class="form-wrap">
+        <iframe
+          src="${FORM_SRC}"
+          id="inline-${FORM_ID}"
+          title="Authority Book Quiz"
+          data-layout="{'id':'INLINE'}"
+          data-form-id="${FORM_ID}"
+          data-height="450"
+          style="width:100%;min-height:480px;border:none;background:transparent;border-radius:14px;overflow:hidden;display:block;"
+        ></iframe>
+      </div>
+      <p class="fineprint">No spam, ever. Your reading opens here the second you submit.</p>
+    </div>`;
+  revealed = false;
+  loadFormEmbed();
+}
+
+function renderResult() {
+  const score = state.answers.reduce((a, b) => a + (b || 0), 0);
+  const tier = tierFor(score);
+  const avg = stageScores();
+  const order = Object.keys(avg).sort((a, b) => avg[a] - avg[b]);
+  const edgeStage = order[0];
+  const strengthStage = order[order.length - 1];
+
+  // next-step copy by tier (real offers only)
+  let nextTitle, nextBody;
+  const nextUrl = "https://nunaisi.com/book"; // Meteor sales page (canonical pretty link)
+  const nextCta = "Come to the Meteor workshop";
+  if (score < 16) {
+    nextTitle = "Your next step: the Meteor workshop";
+    nextBody = "Meteor is the live workshop where your raw story finds its shape and its message. It is the fastest way to turn what you have lived into the spine of a book.";
+  } else {
+    nextTitle = "Bring your ready story to Meteor";
+    nextBody = "Your story is ready for a room. Meteor is the live workshop where you map your book's essence and walk out knowing exactly what to write next.";
+  }
+
+  const ringPct = Math.round((score / MAX) * 100);
+  const circ = 2 * Math.PI * 54;
+  const dash = (ringPct / 100) * circ;
+
+  app.innerHTML = `
+    <div class="screen">
+      <div class="eyebrow center" style="text-align:center;">Your Authority Book Readiness</div>
+      <div class="score-ring">
+        <svg width="132" height="132" viewBox="0 0 132 132">
+          <circle cx="66" cy="66" r="54" fill="none" stroke="#efe5d6" stroke-width="11"/>
+          <circle cx="66" cy="66" r="54" fill="none" stroke="url(#g)" stroke-width="11" stroke-linecap="round"
+            stroke-dasharray="${dash} ${circ}"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#d4af37"/><stop offset="0.6" stop-color="#C65A2E"/><stop offset="1" stop-color="#ff6b9d"/>
+          </linearGradient></defs>
+        </svg>
+        <div class="num"><b>${score}<span style="font-size:18px;color:#a99b86;">/${MAX}</span></b><small>Readiness</small></div>
+      </div>
+      <h2 class="tier-name">${tier.name}</h2>
+      <p class="tier-sub">${tier.blurb}</p>
+      <div class="diag">
+        <div class="box strength">
+          <h4>Your strongest stage</h4>
+          <p>${STAGES[strengthStage].label}</p>
+        </div>
+        <div class="box edge">
+          <h4>Your growth edge</h4>
+          <p>${STAGES[edgeStage].label}</p>
+        </div>
+      </div>
+      <p class="tier-sub" style="text-align:left;max-width:none;font-size:15px;">${STAGES[edgeStage].edge}</p>
+      <div class="next">
+        <h3>${nextTitle}</h3>
+        <p>${nextBody}</p>
+        <button class="btn" id="cta" data-url="${nextUrl}">${nextCta}</button>
+      </div>
+      <button class="retake" id="retake">Retake the assessment</button>
+      <div class="dev-note">Capture runs through the embedded Mastermind form (free, native). The next-step button links to the live Meteor page (nunaisi.com/book). Result language is built on your RISE Method.</div>
+    </div>`;
+
+  document.getElementById("retake").onclick = () => { state.i = 0; state.answers = Array(QUESTIONS.length).fill(null); renderIntro(); };
+  document.getElementById("cta").onclick = (e) => {
+    const url = e.currentTarget.dataset.url;
+    if (url) window.open(url, "_blank");
+    else alert("Prototype: the Summit registration link goes here once it is added to the Company Assets Board.");
+  };
+}
+
+(function boot() {
+  // If the form ever redirects back with ?show=result, rebuild the result from saved answers.
+  const qp = new URLSearchParams(location.search);
+  if (qp.get("show") === "result") {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem("aq_answers") || "null");
+      if (Array.isArray(saved) && saved.length) { state.answers = saved; renderResult(); return; }
+    } catch (e) {}
+  }
+  renderIntro();
+})();
+</script>
+</body>
+</html>
