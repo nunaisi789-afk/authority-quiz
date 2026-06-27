@@ -361,6 +361,8 @@ function fitFrame() {
 if ("ResizeObserver" in window) {
   new ResizeObserver(fitFrame).observe(document.body);
   window.addEventListener("load", fitFrame);
+  // Re-post the settled height a few times so an early transient measurement self-corrects.
+  [120, 500, 1200].forEach(function (t) { setTimeout(fitFrame, t); });
 }
 
 // --- Mastermind capture: native embedded form (free, no per-lead fee, no credentials in the browser).
